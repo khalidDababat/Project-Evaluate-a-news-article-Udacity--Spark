@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Artical NLP </title>
+          
+          <!-- <link rel="stylesheet" href="src/client/styles/base.scss">
+          <link rel="stylesheet" href="src/client/styles/footer.scss">
+          <link rel="stylesheet" href="src/client/styles/form.scss">
+          <link rel="stylesheet" href="src/client/styles/header.scss">
+          <link rel="stylesheet" href="src/client/styles/resets.scss"> -->
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="">
+                Logo
+            </div>
+            <div class="">
+                navigation
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <form id="urlForm">
+                    <input id="name" type="text" name="url" placeholder="Enter URL" required>
+                    <button id="submitButton" type="submit">Submit</button>
+                </form>
+                
+            </section>
+
+            <section>
+                <strong>Form Results:</strong>
+                <div id="text"></div> 
+                <div id="score-tag"></div>
+                <div id="aggreement"></div>
+                <div id="confidence"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>This is a footer</p>
+        </footer>
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
+    </body>
+</html>

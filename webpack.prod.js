@@ -11,6 +11,10 @@ module.exports = {
     mode: 'production',
     devtool: 'source-map',
     stats: 'minimal',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+      },
     module: {
         rules: [
             {
@@ -43,14 +47,15 @@ module.exports = {
             verbose: true, // Log the cleaning process
             cleanStaleWebpackAssets: true,// Automatically remove all unused webpack
             protectWebpackAssets: false// Allow removal of files that are currently being used
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'style.main.css', // Output CSS file name
-            // chunkFilename: '[id].css' // Output chunk file name
-        }),
-        new WorkboxPlugin.GenerateSW({
-            
         })
+        ,
+        new MiniCssExtractPlugin({
+            filename: 'style.css', // Output CSS file name
+           
+        }),
+        // new WorkboxPlugin.GenerateSW({
+            
+        // })
 
     ],
     optimization: {

@@ -11,6 +11,10 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'minimal',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+      },
     module: {
         rules: [
             {
@@ -46,12 +50,20 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'style.css', // Output CSS file name
-            // chunkFilename: '[id].css' // Output chunk file name
+            
         }),
-        new WorkboxPlugin.GenerateSW({
+        // new WorkboxPlugin.GenerateSW({
 
-        })
+        // })
 
     ],
-   
+    devServer: {
+        static:{
+            directory: path.join(__dirname, 'dist'),
+        },
+        compress: true,
+        port: 8081, // Ensure this matches your WebSocket port
+        hot: true,
+        liveReload: true,
+      },
 }

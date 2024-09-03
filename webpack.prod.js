@@ -53,9 +53,9 @@ module.exports = {
             filename: 'style.css', // Output CSS file name
            
         }),
-        // new WorkboxPlugin.GenerateSW({
+        new WorkboxPlugin.GenerateSW({
             
-        // })
+        })
 
     ],
     optimization: {

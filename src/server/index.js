@@ -2,7 +2,6 @@ let path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser'); 
 
-//import fetch from 'node-fetch';
 
 const dotenv = require('dotenv');
 dotenv.config();

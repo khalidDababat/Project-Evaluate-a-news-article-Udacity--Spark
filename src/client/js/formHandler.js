@@ -1,6 +1,6 @@
 const serverURL = "http://localhost:8000";
 
-const Inputurl = document.getElementById("name").value;
+
 
 
 
@@ -27,8 +27,10 @@ const postserver = async (url = "") => {
 };
 
 function handleSubmit(event) {
-  // event.preventDefault();
-
+   event.preventDefault();
+ 
+   const Inputurl = document.getElementById("name").value;
+   
   // If the URL is valid, send it to the server using the serverURL constant above
   postserver(serverURL + "/apipost");
 }

@@ -1,6 +1,8 @@
 let path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser'); 
+const cors = require('cors');
+
 
 
 const dotenv = require('dotenv');
@@ -8,64 +10,58 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.static(path.join(__dirname,'dist')));
+app.use(express.static('dist'));
 
-const cors = require('cors');
 
-// app.use(express.json());
+
+app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 console.log(__dirname);
 
-// Variables for url and api key
 
 
-const BaseAPI = "https://api.meaningcloud.com/sentiment-2.1";
-// const API_key = "083616d02854041091dcb9b8e8c3ad62"; 
-  const API_key = process.env.API_key; 
-// const sample = {
-//   text: '',
-//   score_tag : '',
-//   agreement : '',
-//   confidence : '',
-//   irony : ''
-// }
 
+
+
+
+
+
+//API_key "083616d02854041091dcb9b8e8c3ad62"; 
 //https://api.meaningcloud.com/sentiment-2.1?key=083616d02854041091dcb9b8e8c3ad62&lang=en&url=https://www.aljazeera.net/live
+//https://api.meaningcloud.com/sentiment-2.1?key=083616d02854041091dcb9b8e8c3ad62&url=https://www.aljazeera.net/live&lang=en
 
+//https://api.meaningcloud.com/sentiment-2.1?key=${apikey}&url=${encodeURIComponent(Inputurl)}&lang=en
 
-app.post('/apipost',async (req,res) =>{
-    
-  
+app.post('/api', async (req, res) => {
+  const apikey = process.env.API_key;
+  const Inputurl = req.body.url; 
+  //console.log("The URL Test:", Inputurl); // Check if the URL is properly logged
 
-  try{     
-    const fetch = (await import('node-fetch')).default;
-    const {url:Inputurl} = req.body.url;  
-    
-  const Alldata = await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${API_key}&lang=en&url=https://www.aljazeera.net/live`);
+  if (!Inputurl) {
+      return res.status(400).json({ message: 'URL is required' }); // Handle missing URL
+  }
 
+  try {
+      const apiurl = `https://api.meaningcloud.com/sentiment-2.1?key=${apikey}&url=${encodeURIComponent(Inputurl)}&lang=en`;
 
-  if (!Alldata.ok) {
-    throw new Error(`HTTP error! Status: ${Alldata.status}`);
-   }
+      const fetch = (await import('node-fetch')).default;
+      const response = await fetch(apiurl);
 
-  const data = await Alldata.json(); 
-      console.log(data);
-      //Send the data back to the client as JSON
-      res.json(data);
-  } catch(e){
-      console.log(e);  
-      
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const apidata = await response.json();
+      res.send(apidata);
+  } catch (e) {
       res.status(500).json({ message: 'Failed to fetch data', error: e.message });
-
-  } 
-
+  }
 });
 
 app.get('/', function (req, res) {
-   // res.send("This is the server API page, you may access its services via the client app.");
      res.sendFile(path.resolve('dist/index.html'));
 });
 
@@ -74,8 +70,14 @@ app.get('/', function (req, res) {
 
 
 // Designates what port the app will listen to for incoming requests
-app.listen(8000, function () {
-    console.log('Example app listening on port 8000!');
+app.listen(8082, function () {
+    console.log('Example app listening on port 8082!');
 });
 
 
+//  const dataReady ={
+    //   text: apidata.text ,
+    //   score_tag: apidata.score_tag ,
+    //   agreement: apidata.agreement , 
+    //   subjectivity: apidata.subjectivity
+    //  }

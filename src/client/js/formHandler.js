@@ -1,39 +1,40 @@
-const serverURL = "http://localhost:8000";
-
-
-
 
 
 
 
 // Function to send data to the server
 
-const postserver = async (url = "") => {
-  const res = await fetch(url, {
-    method: "post",
-    credentials: "same-origin",
-    mode: "cors",
-    headers: {
-      "content-Type": "application/json",
-    },
-    body: JSON.stringify({ url: Inputurl }),
-  });
-  try {
-    const s = await res.json();
-    console.log(s);
-  } catch (e) {
-    console.log(e);
-  }
-};
 
-function handleSubmit(event) {
+
+async function handleSubmit(event) {
    event.preventDefault();
  
-   const Inputurl = document.getElementById("name").value;
+   //const Inputurl = document.getElementById("name").value;
    
-  // If the URL is valid, send it to the server using the serverURL constant above
-  postserver(serverURL + "/apipost");
+   const url = document.getElementById("name").value;//Enter URL
+   fetch('http://localhost:8082/api' , {
+      method:"post",
+      headers:{ 'Content-Type': 'application/json' },
+      body:JSON.stringify({url:url})
+   })
+       .then(response => response.json())
+       .then(data =>
+       {
+        // console.log(data.sentence_list[1]); 
+         document.getElementById('text').innerHTML = data.sentence_list[1].text+ " ";
+         document.getElementById('score-tag').innerHTML = data.sentence_list[1].score_tag+ " ";
+         document.getElementById('aggreement').innerHTML = data.sentence_list[1].agreement+ " ";
+         document.getElementById('confidence').innerHTML = data.sentence_list[1].confidence+ " ";
+
+      
+      }
+       )
+       .catch(error => console.error('Error:', error));
+
+
+ 
 }
+
 
 // Export the handleSubmit function
 export { handleSubmit };

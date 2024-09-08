@@ -20,12 +20,17 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
+	margin: 10px;
+	padding: 10px;
+	border: 20px;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	vertical-align: baseline; 
+
+	.footer{
+		background-color: black;
+		color: white;
+	}
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -52,4 +57,13 @@ table {
 }
 ul {
     list-style-type: none;
+}
+
+.footer{
+	background-color: rgb(134, 133, 133);
+	color: rgb(0, 0, 0);
+}
+
+.header{
+	background-color: aqua;
 }

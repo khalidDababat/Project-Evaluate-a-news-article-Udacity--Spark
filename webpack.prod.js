@@ -4,30 +4,39 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin'); // To add PWA support
+const WorkboxPlugin = require('workbox-webpack-plugin'); 
 
 module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
     devtool: 'source-map',
     stats: 'minimal',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js',
+    devServer: {
+        static: './dist',
+        port: 8081,
+         
+    
       },
+    output: {
+       
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist')
+        
+
+      },
+      
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use :{
                 loader: "babel-loader", 
-                options:{
-                    presets: ['@babel/preset-env'] // Use preset-env for JavaScript transpilation
 
+                options:{
+                    presets: ['@babel/preset-env'] 
                 } 
 
-            }
+            
         },
             { 
                 
@@ -58,7 +67,5 @@ module.exports = {
         })
 
     ],
-    optimization: {
-        //Add Optimization for JS and CSS
-    }
+  
 }

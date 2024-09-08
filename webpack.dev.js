@@ -12,30 +12,40 @@ module.exports = {
     devtool: 'source-map',
     stats: 'minimal',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        
         filename: 'main.js',
+        path: path.resolve(__dirname, 'dist')
       },
+    devServer: {
+        
+        port: 8081,
+         
+    
+      },
+    
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use :{
-                loader: "babel-loader", 
+                loader: "babel-loader",
+
                 options:{
                     presets: ['@babel/preset-env'] // Use preset-env for JavaScript transpilation
-
                 } 
 
-            }
-        },
+            },
+
             { 
                 
                 test: /\.scss$/,
                 use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
-        }
-        ]
+            }
+            ]
     },
+
+
+
     plugins: [
          // HTML template to use
         new HtmlWebPackPlugin({
@@ -57,13 +67,5 @@ module.exports = {
         })
 
     ],
-    devServer: {
-        static:{
-            directory: path.join(__dirname, 'dist'),
-        },
-        compress: true,
-        port: 8081, // Ensure this matches your WebSocket port
-        hot: true,
-        liveReload: true,
-      },
+   
 }

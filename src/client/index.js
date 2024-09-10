@@ -8,6 +8,8 @@ import './styles/form.scss';
 import './styles/header.scss';
 import './styles/resets.scss';
 
+
+
 const submitButton = document.getElementById('submitButton'); 
 submitButton.addEventListener('click',handleSubmit);
 
@@ -15,5 +17,5 @@ submitButton.addEventListener('click',handleSubmit);
 
 
 
-export{handleSubmit}; 
+export{handleSubmit  }; 
 

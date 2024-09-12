@@ -29,9 +29,7 @@ console.log(__dirname);
 
 
 
-//API_key "083616d02854041091dcb9b8e8c3ad62"; 
-//https://api.meaningcloud.com/sentiment-2.1?key=083616d02854041091dcb9b8e8c3ad62&lang=en&url=https://www.aljazeera.net/live
-//https://api.meaningcloud.com/sentiment-2.1?key=083616d02854041091dcb9b8e8c3ad62&url=https://www.aljazeera.net/live&lang=en
+//API_key "083616d02854041091dcb9b8e8c3ad62"; I mack another Api key On Another Email Becouse Meaning Cloud Account  
 
 //https://api.meaningcloud.com/sentiment-2.1?key=${apikey}&url=${encodeURIComponent(Inputurl)}&lang=en
 

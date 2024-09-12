@@ -2,11 +2,8 @@
 
 // Function to send data to the server
 
-// function postdata(){
-   
-// }
 
-
+//khalid Ahmad Younes Dababat
 
 async function handleSubmit(event) {
    event.preventDefault();
@@ -14,11 +11,8 @@ async function handleSubmit(event) {
    
    const url = document.getElementById("name").value;//Enter URL 
 
-   if(!isValidUrl()){
-      alert("Please Enter The valid Url");
-      return; 
-   }
-
+   if(isValidUrl(url)){
+     
    try{
       const response = await fetch('http://localhost:8082/api', {
          method: "POST",
@@ -39,12 +33,13 @@ async function handleSubmit(event) {
    }catch(e){
          console.log("error " ,e );
    }
-
+   }else {
+      alert("Please Enter The Valid Url");
+   }
 
 
     
 }
-
 
 function isValidUrl(str) {
    const pattern = new RegExp(
@@ -58,6 +53,7 @@ function isValidUrl(str) {
    );
    return pattern.test(str);
  }
+
 
 
 // Export the handleSubmit function

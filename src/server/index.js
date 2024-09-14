@@ -36,7 +36,7 @@ console.log(__dirname);
 app.post('/api', async (req, res) => {
   const apikey = process.env.API_key;
   const Inputurl = req.body.url; 
-  //console.log("The URL Test:", Inputurl); // Check if the URL is properly logged
+  //console.log("The URL Test:", Inputurl); // Check if the URL  logged
 
   if (!Inputurl) {
       return res.status(400).json({ message: 'URL is required' }); // Handle missing URL

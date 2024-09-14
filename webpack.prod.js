@@ -13,16 +13,16 @@ module.exports = {
    
     stats: 'minimal',
     devServer: {
-        static: './dist',
+        
         port: 8081,
          
     
       },
     output: {
        
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist')
         
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js'
 
       },
       
@@ -31,7 +31,8 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader", 
+                loader: "babel-loader",  
+                
 
                 options:{
                     presets: ['@babel/preset-env'] 
